@@ -1,10 +1,10 @@
 version: "3.11"
 services:
   litellm:
-    build:
-      context: .
-      args:
-        target: runtime
+    #build:
+    #  context: .
+    #  args:
+    #    target: runtime
     image: ghcr.io/berriai/litellm:main-stable
     #########################################
     ## Uncomment these lines to start proxy with a config.yaml file ##
@@ -47,22 +47,22 @@ services:
       timeout: 5s
       retries: 10
   
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - prometheus_data:/prometheus
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9094:9090"
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention.time=15d'
-    restart: always
+  #prometheus:
+  #  image: prom/prometheus
+  #  volumes:
+  #    - prometheus_data:/prometheus
+  #    - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  #  ports:
+  #    - "9094:9090"
+  #  command:
+  #    - '--config.file=/etc/prometheus/prometheus.yml'
+  #    - '--storage.tsdb.path=/prometheus'
+  #    - '--storage.tsdb.retention.time=15d'
+  #  restart: always
 
 volumes:
-  prometheus_data:
-    driver: local
+  #prometheus_data:
+  #  driver: local
   postgres_data:
     name: litellm_postgres_data  # Named volume for Postgres data persistence
 
