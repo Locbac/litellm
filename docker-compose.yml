@@ -19,7 +19,7 @@ services:
         DATABASE_URL: "postgresql://llmproxy:dbpassword9090@db:5432/litellm"
         STORE_MODEL_IN_DB: "True" # allows adding models to proxy via UI
     env_file:
-      - .env # Load local .env file
+      - stack.env # Load local .env file
     depends_on:
       - db  # Indicates that this service depends on the 'db' service, ensuring 'db' starts first
     healthcheck:  # Defines the health check configuration for the container
@@ -53,7 +53,7 @@ services:
       - prometheus_data:/prometheus
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
-      - "9090:9090"
+      - "9094:9090"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
